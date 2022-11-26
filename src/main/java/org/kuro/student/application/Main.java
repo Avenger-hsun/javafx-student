@@ -49,7 +49,7 @@ public class Main extends Application {
             // 去掉Windows自带的标题栏
             stage.initStyle(StageStyle.TRANSPARENT);
             // 为primaryStage添加自由缩放
-            WindowUtils.addResizable(stage, 860, 570);
+            WindowUtils.addResizable(stage, 900, 580);
             // 为primaryStage添加一些GUI的修复代码
             WindowUtils.addWindowsStyle(stage);
         }

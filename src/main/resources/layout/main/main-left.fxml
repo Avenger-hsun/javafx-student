@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@../../css/main-left.css"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.kuro.student.controller.main.LeftController"
+            prefWidth="195.0">
+    <!-- 滚动标签页 -->
+    <center>
+        <ScrollPane hbarPolicy="NEVER" BorderPane.alignment="CENTER">
+            <VBox fx:id="vBoxTabContainer">
+                <HBox fx:id="hDashboardTab" alignment="CENTER_LEFT"
+                      onMouseClicked="#onClickedDashboardTab"
+                      prefWidth="170.0" spacing="12.0"
+                      styleClass="hBoxTab">
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <Image requestedHeight="20.0" requestedWidth="20.0"
+                               url="@../../images/DashboardTabIcon.png"/>
+                    </ImageView>
+                    <Label text="驾驶舱"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                    <Label style="-fx-text-fill: #999999; -fx-font-size: 12px;" text="学生管理"/>
+                </HBox>
+
+                <HBox fx:id="hBoxStudentManageTab" alignment="CENTER_LEFT" onMouseClicked="#onClickedStudentManageTab"
+                      spacing="12.0" styleClass="hBoxTab">
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <Image requestedHeight="20.0" requestedWidth="20.0"
+                               url="@../../images/StudentIcon.png"/>
+                    </ImageView>
+                    <Label text="学生管理"/>
+                </HBox>
+
+                <HBox fx:id="hBoxLocalGradeTab" alignment="CENTER_LEFT" onMouseClicked="#onClickedLocalGradeTab"
+                      spacing="12.0" styleClass="hBoxTab">
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <Image requestedHeight="20.0" requestedWidth="20.0"
+                               url="@../../images/LocalGradeIcon.png"/>
+                    </ImageView>
+                    <Label text="本地成绩"/>
+                </HBox>
+
+                <HBox fx:id="hBoxGradeManageTab" alignment="CENTER_LEFT" onMouseClicked="#onClickedGradeManageTab"
+                      spacing="12.0" styleClass="hBoxTab">
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <Image requestedHeight="20.0" requestedWidth="20.0"
+                               url="@../../images/GradeManageIcon.png"/>
+                    </ImageView>
+                    <Label text="成绩管理"/>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

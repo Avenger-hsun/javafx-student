@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane id="recentPlayContentContainer" prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../../css/local-grade.css"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.kuro.student.controller.student.LocalGradeController">
+
+    <top>
+        <VBox stylesheets="@../../css/common-style.css" id="localTopContainer">
+            <BorderPane>
+                <left>
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Button text="本地导入" onAction="#onClickedImport"/>
+
+                        <Label fx:id="importSuccessLabel" text="成功：0"/>
+                        <Label fx:id="importFailedLabel" text="失败：0"/>
+                    </HBox>
+                </left>
+                <right>
+                    <HBox spacing="20">
+                        <Button text="添加学生" id="btn-info" onAction="#onClickedAddStudent"/>
+                        <Button text="保存到数据库" id="btn-blue"/>
+                    </HBox>
+                </right>
+            </BorderPane>
+
+            <HBox spacing="10">
+                <HBox styleClass="input-border" BorderPane.alignment="CENTER">
+                    <TextField promptText="根据姓名筛选" styleClass="input-field" fx:id="nameSearch"/>
+                </HBox>
+
+                <HBox styleClass="input-border" BorderPane.alignment="CENTER">
+                    <TextField promptText="根据课程筛选" styleClass="input-field" fx:id="courseSearch"/>
+                </HBox>
+
+                <HBox alignment="CENTER" prefHeight="41.0" spacing="5.0">
+                    <Button text="查询" onAction="#onClickedSearch"/>
+                    <Button text="清除" onAction="#onClickedClear"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tableStudentLocal">
+            <columns>
+                <TableColumn fx:id="noColumn" editable="false" maxWidth="320.0" minWidth="120.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="学号"/>
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="300.0" minWidth="110.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="姓名"/>
+                <TableColumn fx:id="courseColumn" editable="false" maxWidth="390.0" minWidth="120.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="课程"/>
+                <TableColumn fx:id="gradeColumn" editable="false" maxWidth="300.0" minWidth="110.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="成绩"/>
+                <TableColumn fx:id="actionColumn" editable="false" maxWidth="470.0" minWidth="150.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="操作"/>
+            </columns>
+            <placeholder>
+                <Label text="暂无数据！"/>
+            </placeholder>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </center>
+
+</BorderPane>

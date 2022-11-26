@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.kuro.client.mapper.StudentMapper">
+
+    <select id="selectAll" resultType="org.kuro.client.entity.Student">
+        select id, `no`, `name`, course, grade from student
+    </select>
+
+    <insert id="saveList">
+        insert into student (id, `no`, `name`, course, grade) values
+        <foreach collection="students" item="data" separator=",">
+            (
+            #{data.id},
+            #{data.no},
+            #{data.name},
+            #{data.course},
+            #{data.grade}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

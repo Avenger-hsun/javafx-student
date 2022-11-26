@@ -1,0 +1,43 @@
+.input-border {
+    -fx-background-color: white;
+    -fx-background-insets: 7 0 7 0;
+    -fx-background-radius: 20;
+    -fx-border-color: #E1E1E2;
+    -fx-border-insets: 7 0 7 0;
+    -fx-border-radius: 20;
+    -fx-pref-height: 41;
+    -fx-pref-width: 166;
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+.input-field {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+    -fx-pref-height: 25;
+    /* -fx-pref-width: 128; */
+    -fx-pref-width: 150;
+    -fx-min-height: 25;
+    -fx-min-width: 150;
+}
+
+.button {
+    -fx-background-color: #296BCC;
+    -fx-border-color: #296BCC;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+#btn-success {
+    -fx-background-color: #31C27C;
+    -fx-border-color: #31C27C;
+}
+
+#btn-info {
+    -fx-background-color: transparent;
+    -fx-border-color: #E1E1E2;
+    -fx-text-fill: #333333;
+}

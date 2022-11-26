@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      alignment="CENTER"
+      fx:controller="org.kuro.student.controller.student.TableActionController">
+
+    <Button textFill="#296BCC"
+            style="-fx-background-color: transparent;-fx-border-color: transparent;"
+            text="编辑" onMouseClicked="#onClickedEdit"/>
+
+    <Button textFill="#BD2F2D"
+            style="-fx-background-color: transparent;-fx-border-color: transparent;"
+            text="删除" onMouseClicked="#onClickedDelete"/>
+
+</HBox>
