@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @Controller
 public class TableActionController {
@@ -26,26 +27,24 @@ public class TableActionController {
     @FXML
     public void onClickedDelete(MouseEvent mouseEvent) throws Exception {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) { // 鼠标左击
-            FXMLLoader loader = applicationContext.getBean(SpringFXMLLoader.class)
-                    .getLoader("/layout/dialog/delete-student.fxml");
-            Stage primaryStage = ((Stage) localGradeController.tableStudentLocal.getScene().getWindow());
-            Stage dialogStage = StageUtils.getStage((Stage) localGradeController.tableStudentLocal.getScene()
-                    .getWindow(), loader.load());
-            StageUtils.synchronizeCenter(primaryStage, dialogStage);
-            // WindowUtils.blockBorderPane(mainController.getBorderPane());
-            dialogStage.showAndWait();
+            Stage stage =  ((Stage) localGradeController.tableStudentLocal.getScene().getWindow());;
+            showDialog("/layout/dialog/delete-student-local-dialog.fxml", stage);
         }
     }
 
     // 点击了编辑按钮
     @FXML
     public void onClickedEdit(MouseEvent mouseEvent) throws Exception {
-        FXMLLoader loader = applicationContext.getBean(SpringFXMLLoader.class)
-                .getLoader("/layout/dialog/edit-student.fxml");
-        Stage primaryStage = ((Stage) localGradeController.tableStudentLocal.getScene().getWindow());
-        Stage dialogStage = StageUtils.getStage((Stage) localGradeController.tableStudentLocal.getScene()
-                .getWindow(), loader.load());
-        StageUtils.synchronizeCenter(primaryStage, dialogStage);
+        Stage stage =  ((Stage) localGradeController.tableStudentLocal.getScene().getWindow());;
+        showDialog("/layout/dialog/edit-student-dialog.fxml", stage);
+    }
+
+
+    // 显示弹框
+    private void showDialog(String url, Stage stage) throws IOException {
+        FXMLLoader loader = applicationContext.getBean(SpringFXMLLoader.class).getLoader(url);
+        Stage dialogStage = StageUtils.getStage(stage, loader.load());
+        StageUtils.synchronizeCenter(stage, dialogStage);
         dialogStage.showAndWait();
     }
 }

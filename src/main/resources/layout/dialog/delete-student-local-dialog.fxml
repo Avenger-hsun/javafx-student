@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.kuro.student.controller.dialog.DelLocalStuController"
+            id="actualPane"
+            stylesheets="@../../css/confirm-dialog.css"
+            maxHeight="170.0" maxWidth="370.0"
+            prefHeight="170.0" prefWidth="370.0">
+
+    <center>
+        <AnchorPane id="visualPane">
+            <Label layoutX="30.0" layoutY="49.0" fx:id="confirmText" text="确定删除该学生吗？"/>
+
+            <Button id="btnConfirm" layoutX="141.0" layoutY="108.0" mnemonicParsing="false"
+                    onAction="#onClickedConfirm" text="确定"/>
+
+            <Button fx:id="btnCancel" layoutX="249.0" layoutY="108.0" mnemonicParsing="false"
+                    onAction="#onClickedCancel" text="取消"/>
+        </AnchorPane>
+    </center>
+
+</BorderPane>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            id="actualPane"
+            stylesheets="@../../css/create-student-dialog.css"
+            fx:controller="org.kuro.student.controller.dialog.AddLocalStuController"
+            prefHeight="300.0" prefWidth="370.0" maxHeight="300.0" maxWidth="370.0">
+
+    <center>
+        <BorderPane id="visualPane">
+            <top>
+                <HBox id="titleBox" BorderPane.alignment="CENTER">
+                    <Label id="titleLabel" text="添加学生"/>
+                </HBox>
+            </top>
+
+            <center>
+                <VBox alignment="CENTER" prefHeight="210.0" prefWidth="100.0" spacing="10.0"
+                      BorderPane.alignment="CENTER">
+
+                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="360.0">
+                        <TextField fx:id="noInput" focusTraversable="false" promptText="学号"/>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="360.0">
+                        <TextField fx:id="nameInput" focusTraversable="false" promptText="姓名"/>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="360.0">
+                        <ComboBox fx:id="courseInput" focusTraversable="false" promptText="请选择课程">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="C语言"/>
+                                    <String fx:value="数据结构"/>
+                                    <String fx:value="Java程序设计"/>
+                                    <String fx:value="离散数学"/>
+                                    <String fx:value="计算机网络"/>
+                                    <String fx:value="计算机操作系统"/>
+                                    <String fx:value="计算机组成与设计"/>
+                                    <String fx:value="高等数学"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="360.0">
+                        <TextField fx:id="gradeInput" focusTraversable="false" promptText="成绩"/>
+                    </HBox>
+                </VBox>
+            </center>
+
+            <bottom>
+                <HBox alignment="CENTER" prefHeight="67.0" prefWidth="348.0" spacing="12.0"
+                      BorderPane.alignment="CENTER">
+                    <Button id="btnCreate" onMouseClicked="#onCreateButtonClicked" text="添加" mnemonicParsing="false"/>
+
+                    <Button fx:id="btnCancel" onMouseClicked="#onCancelButtonClicked" text="取消"
+                            mnemonicParsing="false"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </center>
+
+</BorderPane>

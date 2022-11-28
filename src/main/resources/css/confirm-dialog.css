@@ -1,31 +1,45 @@
 #actualPane {
     -fx-background-color: transparent;
     -fx-padding: 5;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
 }
 
 #visualPane {
     -fx-background-color: WHITE;
     -fx-border-width: 1;
-    -fx-border-color: #c9c9cb;
-    -fx-effect: dropshadow(three-pass-box, #c9c9cb, 5, 0, 0, 0);
+    -fx-border-color: #C9C9CB;
+    -fx-effect: dropshadow(three-pass-box, #C9C9CB, 5, 0, 0, 0);
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-pref-height: 160;
+    -fx-pref-width: 360;
 }
 
 .label {
     -fx-font-family: "Microsoft YaHei", "SimSun";
     -fx-font-size: 16px;
+    -fx-pref-width: 312;
+    -fx-pref-height: 30;
+}
+
+.button {
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-pref-height: 30;
+    -fx-pref-width: 90;
 }
 
 #btnConfirm {
-    -fx-background-color: #BC2F2D;
+    -fx-background-color: #31C27C;
     -fx-text-fill: WHITE;
     -fx-background-insets: 0;
-    -fx-background-radius: 0;
 }
 
 #btnCancel {
     -fx-background-color: WHITE;
-    -fx-text-fill: #BC2F2D;
-    -fx-border-color: #BC2F2D;
+    -fx-text-fill: #31C27C;
+    -fx-border-color: #31C27C;
     -fx-border-width: 1;
 }
 

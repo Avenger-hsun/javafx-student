@@ -1,6 +1,5 @@
 package org.kuro.student.controller.student;
 
-import cn.hutool.core.util.IdUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,6 +60,8 @@ public class LocalGradeController {
     public final List<LocalStudent> students = new ArrayList<>();
     // 存放每次读取txt文本得到了学生数据
     private final List<LocalStudent> readList = new ArrayList<>();
+    // 导入成绩错误的信息列表
+    public final List<String> errList = new ArrayList<>();
     // 导入成功/失败的数据条数
     int importSuccessNum = 0, importFailedNum = 0;
 
@@ -129,6 +130,8 @@ public class LocalGradeController {
             importFailedNum = 0;
             // 上一次读取到的学生信息置空
             readList.clear();
+            // 导入错误成绩信息置空
+            errList.clear();
 
             // 读取文件
             InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
@@ -139,10 +142,12 @@ public class LocalGradeController {
                 if (!line.contains("学号")) {
                     String[] split = line.split("，");
                     if (split.length == 4 && Double.parseDouble(split[3]) <= 100 && Double.parseDouble(split[3]) >= 0) {
-                        readList.add(new LocalStudent(IdUtil.getSnowflakeNextIdStr(), split[0], split[1], split[2], split[3]));
+                        readList.add(new LocalStudent(split[0], split[1], split[2], split[3]));
                         importSuccessNum++;
                     } else {
                         importFailedNum++;
+                        // 记录导入错误的信息
+                        errList.add(line);
                     }
                 }
             }
@@ -154,6 +159,12 @@ public class LocalGradeController {
             // 设置本次导入成功或失败的数量
             importSuccessLabel.setText("成功: " + importSuccessNum);
             importFailedLabel.setText("失败: " + importFailedNum);
+
+            // 如果存在导出错误的信息，弹框显示
+            if (errList.size() > 0) {
+                Stage stage = ((Stage) tableStudentLocal.getScene().getWindow());
+                showDialog("/layout/dialog/import-error-dialog.fxml", stage);
+            }
         }
     }
 
@@ -195,14 +206,8 @@ public class LocalGradeController {
     // [添加学生]按钮点击事件
     @FXML
     public void onClickedAddStudent(ActionEvent actionEvent) throws Exception {
-        FXMLLoader loader = applicationContext.getBean(SpringFXMLLoader.class)
-                .getLoader("/layout/dialog/add-student.fxml");
-        Stage primaryStage = ((Stage) tableStudentLocal.getScene().getWindow());
-        Stage dialogStage = StageUtils.getStage((Stage) tableStudentLocal.getScene()
-                .getWindow(), loader.load());
-        StageUtils.synchronizeCenter(primaryStage, dialogStage);
-        // WindowUtils.blockBorderPane(mainController.getBorderPane());
-        dialogStage.showAndWait();
+        Stage stage = ((Stage) tableStudentLocal.getScene().getWindow());
+        showDialog("/layout/dialog/add-student-local-dialog.fxml", stage);
     }
 
 
@@ -212,4 +217,13 @@ public class LocalGradeController {
         tableStudentLocal.refresh();
     }
 
+
+    // 显示弹框
+    private void showDialog(String url, Stage stage) throws IOException {
+        FXMLLoader loader = applicationContext.getBean(SpringFXMLLoader.class).getLoader(url);
+        Stage dialogStage = StageUtils.getStage(stage, loader.load());
+        StageUtils.synchronizeCenter(stage, dialogStage);
+        // WindowUtils.blockBorderPane(mainController.getBorderPane());
+        dialogStage.showAndWait();
+    }
 }

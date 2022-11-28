@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.kuro.student.controller.dialog.ImportErrorController"
+            stylesheets="@../../css/import-error-dialog.css"
+            maxHeight="240.0" maxWidth="370.0"
+            id="actualPane"
+            prefHeight="240.0" prefWidth="370.0">
+
+    <top>
+        <HBox style="-fx-alignment: center-left;">
+            <Label text="导入失败的成绩："/>
+        </HBox>
+    </top>
+
+    <center>
+        <ListView fx:id="errList"/>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#onClickedConfirm" text="确定"/>
+        </HBox>
+    </bottom>
+</BorderPane>

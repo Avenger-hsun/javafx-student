@@ -1,0 +1,107 @@
+/*添加学生的容器样式*/
+#actualPane {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+}
+
+#visualPane {
+    -fx-background-color: WHITE;
+    -fx-border-width: 1;
+    -fx-border-color: #C9C9CB;
+    -fx-effect: dropshadow(three-pass-box, #C9C9CB, 5, 0, 0, 0);
+    -fx-pref-height: 246;
+    -fx-pref-width: 360;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+}
+
+.text-field, #courseInput {
+    -fx-font-family: "Microsoft YaHei", "SimSun";
+    -fx-font-size: 14;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E8E8EA;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.combo-box {
+    -fx-prompt-text-fill: #B2B2B2;
+}
+
+.combo-box .combo-box-popup,
+.combo-box .combo-box-popup .list-view {
+    -fx-background-insets: 0;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-border-insets: 0;
+}
+
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-background-color: #F2F2F3;
+    -fx-text-fill: #333333;
+}
+
+.combo-box .combo-box-popup .list-cell:selected {
+    -fx-background-color: #E8E8E8;
+    -fx-text-fill: #333333;
+}
+
+#titleBox {
+    -fx-pref-height: 40;
+    -fx-pref-width: 359;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #C9C9CB;
+    -fx-alignment: center-left;
+}
+
+#titleLabel {
+    -fx-font-family: "Microsoft YaHei", "SimSun";
+    -fx-font-size: 16px;
+    -fx-padding: 10;
+}
+
+/*使TextField组件在鼠标聚焦时，如果文本为空还是显示提示文本prompt，默认是不显示的，会被删除
+Default JavaFX Style
+.text-input {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+.text-input:focused {
+    -fx-prompt-text-fill: transparent;
+}
+*/
+.text-input, .text-input:focused {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}
+
+.button {
+    -fx-font-family: "Microsoft YaHei", "SimSun";
+    -fx-font-size: 15px;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-pref-height: 32;
+    -fx-pref-width: 92;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+#btnCreate {
+    -fx-text-fill: WHITE;
+    -fx-background-color: #31C27C;
+}
+
+#btnCancel {
+    -fx-text-fill: #31C27C;
+    -fx-background-color: WHITE;
+    -fx-border-width: 1px;
+    -fx-border-color: #31C27C;
+}
+
+#noInput, #nameInput, #courseInput, #gradeInput {
+    -fx-pref-width: 320;
+    -fx-pref-height: 32;
+}
