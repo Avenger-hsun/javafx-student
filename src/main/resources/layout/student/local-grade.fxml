@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane id="recentPlayContentContainer" prefHeight="400.0" prefWidth="600.0"
+<BorderPane prefHeight="400.0" prefWidth="600.0"
             stylesheets="@../../css/local-grade.css"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -14,6 +14,7 @@
             <BorderPane>
                 <left>
                     <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Button text="启动服务" id="btn-success" onAction="#onClickedServer"/>
                         <Button text="本地导入" onAction="#onClickedImport"/>
 
                         <Label fx:id="importSuccessLabel" text="成功：0"/>
@@ -23,7 +24,7 @@
                 <right>
                     <HBox spacing="20">
                         <Button text="添加学生" id="btn-info" onAction="#onClickedAddStudent"/>
-                        <Button text="保存到数据库" id="btn-blue"/>
+                        <Button text="保存到数据库" id="btn-blue" onAction="#onClickedSaveDB"/>
                     </HBox>
                 </right>
             </BorderPane>
@@ -46,7 +47,7 @@
     </top>
 
     <center>
-        <TableView fx:id="tableStudentLocal">
+        <TableView fx:id="tableStudentLocal" id="table">
             <columns>
                 <TableColumn fx:id="noColumn" editable="false" maxWidth="320.0" minWidth="120.0" prefWidth="-1.0"
                              resizable="false" sortable="false" text="学号"/>

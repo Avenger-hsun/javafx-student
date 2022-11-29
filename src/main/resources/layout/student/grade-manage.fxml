@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.kuro.student.controller.student.StudentManageController"
+            fx:controller="org.kuro.student.controller.student.GradeManageController"
             prefHeight="400.0" prefWidth="600.0">
 
     <Button text="88"/>

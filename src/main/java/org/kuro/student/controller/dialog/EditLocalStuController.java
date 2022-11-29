@@ -12,9 +12,10 @@ import org.kuro.student.entity.LocalStudent;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
-public class AddLocalStuController {
+public class EditLocalStuController {
 
     // 确定按钮
     @FXML
@@ -32,7 +33,20 @@ public class AddLocalStuController {
     @Resource
     private LocalGradeController localGradeController;
 
-    // [添加]按钮点击事件
+    private LocalStudent clickedStudent;
+
+    public void initialize() {
+        clickedStudent = localGradeController.tableStudentLocal.getSelectionModel().getSelectedItem();
+        if (clickedStudent == null) {
+            return;
+        }
+        noInput.setText(clickedStudent.getNo());
+        nameInput.setText(clickedStudent.getName());
+        courseInput.setValue(clickedStudent.getCourse());
+        gradeInput.setText(clickedStudent.getGrade());
+    }
+
+    // [修改]按钮点击事件
     @FXML
     public void onCreateButtonClicked(MouseEvent mouseEvent) {
         String noText = noInput.getText().trim();
@@ -46,9 +60,24 @@ public class AddLocalStuController {
                     IdUtil.getSnowflakeNextIdStr(),
                     noText, nameText, courseText, gradeText
             );
-            // 添加学生数据并刷新表格
-            localGradeController.students.add(student);
-            localGradeController.setTableData();
+
+            // 遍历students集合，找到点击项的索引（先删后加元素会在末尾插入）
+            List<LocalStudent> list = localGradeController.students;
+            int index = -1;
+            for (int i = 0; i < list.size(); i++) {
+                // if (clickedStudent.equals(list.get(i))) {
+                //     index = i;
+                // }
+                if (clickedStudent.getId().equals(list.get(i).getId())) {
+                    index = i;
+                }
+            }
+
+            // 替换集合内对象，并刷新表格
+            if (index != -1) {
+                localGradeController.students.set(index, student);
+                localGradeController.setTableData();
+            }
 
             // 隐藏窗口
             btnCancel.getScene().getWindow().hide();

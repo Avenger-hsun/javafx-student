@@ -89,7 +89,7 @@ Default JavaFX Style
     -fx-opacity: 0.9;
 }
 
-#btnCreate {
+#btnConfirm {
     -fx-text-fill: WHITE;
     -fx-background-color: #31C27C;
 }

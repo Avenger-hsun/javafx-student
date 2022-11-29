@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../../css/local-grade.css"
             fx:controller="org.kuro.student.controller.student.StudentManageController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <Button text="123"/>
+    <top>
+        <HBox spacing="10" stylesheets="@../../css/common-style.css">
+            <padding>
+                <Insets left="10"/>
+            </padding>
 
-</AnchorPane>
+            <HBox styleClass="input-border" BorderPane.alignment="CENTER">
+                <TextField promptText="根据姓名筛选" styleClass="input-field" fx:id="nameSearch"/>
+            </HBox>
+
+            <HBox styleClass="input-border" BorderPane.alignment="CENTER">
+                <TextField promptText="根据课程筛选" styleClass="input-field" fx:id="courseSearch"/>
+            </HBox>
+
+            <HBox alignment="CENTER" prefHeight="41.0" spacing="5.0">
+                <Button text="查询"/>
+                <Button text="清除"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tableStudent" id="table">
+            <columns>
+                <TableColumn fx:id="noColumn" editable="false" maxWidth="270.0" minWidth="120.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="学号"/>
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="260.0" minWidth="90.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="姓名"/>
+                <TableColumn fx:id="genderColumn" editable="false" maxWidth="180.0" minWidth="50.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="性别"/>
+                <TableColumn fx:id="facultyColumn" editable="false" maxWidth="290.0" minWidth="120.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="院系"/>
+                <TableColumn fx:id="majorColumn" editable="false" maxWidth="285.0" minWidth="120.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="专业"/>
+                <TableColumn fx:id="yearColumn" editable="false" maxWidth="220.0" minWidth="90.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="年级"/>
+                <TableColumn fx:id="clsColumn" editable="false" maxWidth="220.0" minWidth="90.0" prefWidth="-1.0"
+                             resizable="false" sortable="false" text="班级"/>
+            </columns>
+            <placeholder>
+                <Label text="暂无数据！"/>
+            </placeholder>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </center>
+
+</BorderPane>

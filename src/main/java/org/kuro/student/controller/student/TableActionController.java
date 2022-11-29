@@ -6,6 +6,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.kuro.student.application.SpringFXMLLoader;
+import org.kuro.student.entity.LocalStudent;
 import org.kuro.student.utils.StageUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,13 @@ public class TableActionController {
     // 点击了编辑按钮
     @FXML
     public void onClickedEdit(MouseEvent mouseEvent) throws Exception {
+        LocalStudent item = localGradeController.tableStudentLocal.getSelectionModel().getSelectedItem();
+        if (item == null) {
+            return;
+        }
+
         Stage stage =  ((Stage) localGradeController.tableStudentLocal.getScene().getWindow());;
-        showDialog("/layout/dialog/edit-student-dialog.fxml", stage);
+        showDialog("/layout/dialog/edit-student-local-dialog.fxml", stage);
     }
 
 

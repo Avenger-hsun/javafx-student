@@ -17,38 +17,43 @@ BorderPane {
 /*****************
 表格的样式 start
 *****************/
-#tableStudentLocal {
+#table {
     -fx-padding: 0;
     -fx-pref-height: 271;
     -fx-pref-width: 600;
 }
 
 /*表格头行的背景*/
-#tableStudentLocal.table-view .column-header-background {
+#table.table-view .column-header-background {
     -fx-background-color: transparent;
 }
 
-#tableStudentLocal.table-view .noColumn .label,
-#tableStudentLocal.table-view .nameColumn .label,
-#tableStudentLocal.table-view .courseColumn .label,
-#tableStudentLocal.table-view .gradeColumn .label,
-#tableStudentLocal.table-view .actionColumn .label {
+#table.table-view .noColumn .label,
+#table.table-view .nameColumn .label,
+#table.table-view .courseColumn .label,
+#table.table-view .gradeColumn .label,
+#table.table-view .actionColumn .label,
+#table.table-view .genderColumn .label,
+#table.table-view .facultyColumn .label,
+#table.table-view .majorColumn .label,
+#table.table-view .yearColumn .label,
+#table.table-view .clsColumn .label {
     -fx-alignment: center;
     -fx-padding: 0 0 0 5;
 }
 
-#tableStudentLocal.table-view .column-header {
+#table.table-view .column-header {
     -fx-background-color: transparent;
     -fx-border-width: 1 1 1 0;
     -fx-border-color: #E4E4E7;
     -fx-size: 30px;
 }
 
-#tableStudentLocal.table-view .column-header .label {
+#table.table-view .column-header .label {
     -fx-font-family: "Microsoft YaHei", "SimSun";
 }
 
-#tableStudentLocal.table-view .table-cell {
+#table.table-view .table-cell {
     -fx-text-fill: #333333;
     -fx-font-family: "Microsoft YaHei", "SimSun";
     -fx-border-color: transparent;
@@ -57,41 +62,41 @@ BorderPane {
 }
 
 /*表格行样式*/
-#tableStudentLocal.table-view .table-row-cell {
+#table.table-view .table-row-cell {
     -fx-cell-size: 40px;
     -fx-background-color: #FAFAFC;
     -fx-background-insets: 0;
 }
 
 /*表格行按压的缩放样式*/
-#tableStudentLocal.table-view .table-row-cell:pressed {
+#table.table-view .table-row-cell:pressed {
     -fx-scale-x: 0.995;
     -fx-scale-y: 0.995;
     -fx-background-insets: 0 -3em 0 -3em;
 }
 
 /*表格偶数行样式*/
-#tableStudentLocal.table-view .table-row-cell:odd {
+#table.table-view .table-row-cell:odd {
     -fx-background-color: #F4F4F6;
 }
 
 /*表格行鼠标放置在上面的样式*/
-#tableStudentLocal.table-view .table-row-cell:hover {
+#table.table-view .table-row-cell:hover {
     -fx-background-color: #F2F2F3;
 }
 
 /*选中行的背景颜色*/
-#tableStudentLocal.table-view .table-row-cell:selected {
+#table.table-view .table-row-cell:selected {
     -fx-background-color: #E8E8E8;
 }
 
 /*空行的样式，参见：http://fxexperience.com/2011/11/alternate-row-highlighting-in-empty-tableview-and-listview-rows/*/
-#tableStudentLocal.table-view .table-row-cell:empty {
+#table.table-view .table-row-cell:empty {
     -fx-background-color: #FAFAFC;
 }
 
 /*去除空行的边框*/
-#tableStudentLocal.table-view .table-row-cell:empty .table-cell {
+#table.table-view .table-row-cell:empty .table-cell {
     -fx-border-width: 0px;
 }
 

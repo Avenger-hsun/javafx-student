@@ -16,5 +16,7 @@
 
     <mappers>
         <mapper resource="mapper/StudentMapper.xml"/>
+        <mapper resource="mapper/LocalStudentMapper.xml"/>
+        <mapper resource="mapper/ReportCardMapper.xml"/>
     </mappers>
 </configuration>

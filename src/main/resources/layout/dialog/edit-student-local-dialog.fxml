@@ -9,14 +9,14 @@
             xmlns:fx="http://javafx.com/fxml"
             id="actualPane"
             stylesheets="@../../css/create-student-dialog.css"
-            fx:controller="org.kuro.student.controller.dialog.AddLocalStuController"
+            fx:controller="org.kuro.student.controller.dialog.EditLocalStuController"
             prefHeight="300.0" prefWidth="370.0" maxHeight="300.0" maxWidth="370.0">
 
     <center>
         <BorderPane id="visualPane">
             <top>
                 <HBox id="titleBox" BorderPane.alignment="CENTER">
-                    <Label id="titleLabel" text="添加学生"/>
+                    <Label id="titleLabel" text="修改学生"/>
                 </HBox>
             </top>
 
@@ -55,7 +55,7 @@
             <bottom>
                 <HBox alignment="CENTER" prefHeight="67.0" prefWidth="348.0" spacing="12.0"
                       BorderPane.alignment="CENTER">
-                    <Button id="btnConfirm" onMouseClicked="#onCreateButtonClicked" text="添加" mnemonicParsing="false"/>
+                    <Button id="btnConfirm" onMouseClicked="#onCreateButtonClicked" text="修改" mnemonicParsing="false"/>
 
                     <Button fx:id="btnCancel" onMouseClicked="#onCancelButtonClicked" text="取消"
                             mnemonicParsing="false"/>
@@ -65,3 +65,4 @@
     </center>
 
 </BorderPane>
+

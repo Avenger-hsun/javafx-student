@@ -1,5 +1,10 @@
 package org.kuro.student.controller.student;
 
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.ContentType;
+import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.kuro.student.application.SpringFXMLLoader;
 import org.kuro.student.entity.LocalStudent;
+import org.kuro.student.mapper.LocalStudentMapper;
 import org.kuro.student.utils.StageUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -19,7 +29,10 @@ import org.springframework.stereotype.Controller;
 import javax.annotation.Resource;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 @Controller
 public class LocalGradeController {
@@ -142,7 +155,10 @@ public class LocalGradeController {
                 if (!line.contains("学号")) {
                     String[] split = line.split("，");
                     if (split.length == 4 && Double.parseDouble(split[3]) <= 100 && Double.parseDouble(split[3]) >= 0) {
-                        readList.add(new LocalStudent(split[0], split[1], split[2], split[3]));
+                        LocalStudent student = new LocalStudent(
+                                IdUtil.getSnowflakeNextIdStr(),
+                                split[0], split[1], split[2], split[3]);
+                        readList.add(student);
                         importSuccessNum++;
                     } else {
                         importFailedNum++;
@@ -211,6 +227,44 @@ public class LocalGradeController {
     }
 
 
+    // [保存到数据库]按钮点击事件
+    public void onClickedSaveDB(ActionEvent actionEvent) {
+        try {
+            Reader reader = Resources.getResourceAsReader("mybatis.xml");
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+            SqlSession session = factory.openSession();
+
+            LocalStudentMapper studentMapper = session.getMapper(LocalStudentMapper.class);
+            studentMapper.saveList(students);
+            session.commit();
+            session.close();
+            reader.close();
+
+            System.out.println("数据已保存到数据库！");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // [启动服务]按钮点击事件
+    public void onClickedServer(ActionEvent actionEvent) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 200);
+        map.put("message", "请求成功！");
+        map.put("success", true);
+
+        // 开启一个新的线程，并开启一个http服务返回学生成绩列表
+        ExecutorService service = ThreadUtil.newExecutor();
+        service.execute(() -> HttpUtil.createServer(8360)
+                .addAction("/", (req, res) -> {
+                    map.put("data", students);
+                    res.write(JSONUtil.toJsonStr(map), ContentType.JSON.toString());
+                }).start());
+        service.shutdown();
+    }
+
+
     // 设置表格的数据
     public void setTableData() {
         tableStudentLocal.setItems(FXCollections.observableArrayList(students));
@@ -226,4 +280,6 @@ public class LocalGradeController {
         // WindowUtils.blockBorderPane(mainController.getBorderPane());
         dialogStage.showAndWait();
     }
+
+
 }
