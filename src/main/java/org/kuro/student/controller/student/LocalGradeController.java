@@ -248,6 +248,7 @@ public class LocalGradeController {
 
 
     // [启动服务]按钮点击事件
+    boolean serverClicked = false;
     public void onClickedServer(ActionEvent actionEvent) {
         Map<String, Object> map = new HashMap<>();
         map.put("code", 200);
@@ -255,13 +256,16 @@ public class LocalGradeController {
         map.put("success", true);
 
         // 开启一个新的线程，并开启一个http服务返回学生成绩列表
-        ExecutorService service = ThreadUtil.newExecutor();
-        service.execute(() -> HttpUtil.createServer(8360)
-                .addAction("/", (req, res) -> {
-                    map.put("data", students);
-                    res.write(JSONUtil.toJsonStr(map), ContentType.JSON.toString());
-                }).start());
-        service.shutdown();
+        if (!serverClicked) {
+            ExecutorService service = ThreadUtil.newExecutor();
+            service.execute(() -> HttpUtil.createServer(8360)
+                    .addAction("/", (req, res) -> {
+                        map.put("data", students);
+                        res.write(JSONUtil.toJsonStr(map), ContentType.JSON.toString());
+                    }).start());
+            serverClicked = true;
+            service.shutdown();
+        }
     }
 
 
